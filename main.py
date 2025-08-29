@@ -34,14 +34,27 @@ print(f"\nWelcome to Hangman!\nHangman is a simple game, you have to guess all t
 
 while answer != set_of_characters:
     print(f'{diagrams.decoration_line} Lives:{user_lives - 1} {diagrams.decoration_line}')
-
-    print(f'Letters not in the word: {",".join(wrong_answers)}')
+    print(f'{diagrams.diagram[user_lives - 1]}')
+    print(f'WORD YOU ARE GUESSING: {print_blanks(answer)}')
+    print(f'Your WRONG Guesses: {",".join(wrong_answers)}')
     character = input("Type a letter that you think exists in the word! --> ")
     if character in set_of_characters:
         if character not in answer:
             answer.add(character)
             print('Yes! The letter is in the word!')
         else:
-            print('Nice try but you already guessed that character! No lives were deducted, try a different character!')
+            print('Nice try but you already guessed that character!\nNo lives were deducted, try a different character!')
     else:
-        wrong_answers.add(character)
+        if character not in wrong_answers:
+            wrong_answers.add(character)
+            user_lives = user_lives - 1
+            print('Aw, Snap! The letter is not in the word!')
+        else:
+            print("Aw, Snap! You already tried that character and it is not in the word!\nNo lives were deducted, try a different character!")
+
+if answer == set_of_characters:
+    print(f'{diagrams.decoration_line}{diagrams.decoration_line}\n{diagrams.you_win}\nYOU WIN! You correctly guessed the word {random_word}!\nRetry again to get a different word!\n:)')
+    exit(0)
+else:
+    print(f'{diagrams.decoration_line}{diagrams.decoration_line}\n{diagrams.you_lose}\nDAMN HARD LUCK! You Lose, the word was {random_word}!\nTry again next time...\n:)!')
+    exit(0)
