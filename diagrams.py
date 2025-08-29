@@ -56,8 +56,7 @@ diagram = [
       |
 ========='''
 ]
-hangman_text = [
-'''
+hangman_text = '''
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 _                                             
 | |                                            
@@ -67,7 +66,51 @@ _
 |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
                     __/ |                      
                    |___/                       
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-'''
-]
-decoration_line = ['XXXXXXXXXXXXXXXXXXXXXXXX']
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'''
+
+decoration_line = '''XXXXXXXXXXXXXXXXXXXXXXXX'''
+
+you_lose='''
+               ...
+             ;::::;
+           ;::::; :;
+         ;:::::'   :;
+        ;:::::;     ;.            0
+       ,:::::'       ;           OOO
+       ::::::;       ;          OOOOO
+       ;:::::;       ;         OOOOOOOO
+      ,;::::::;     ;'         / OOOOOOO
+    ;:::::::::`. ,,,;.        /  / DOOOOOO
+  .';:::::::::::::::::;,     /  /     DOOOO
+ ,::::::;::::::;;;;::::;,   /  /        DOOO
+;`::::::`'::::::;;;::::: ,#/  /          DOOO
+:`:::::::`;::::::;;::: ;::#  /            DOOO
+::`:::::::`;:::::::: ;::::# /              DOO
+`:`:::::::`;:::::: ;::::::#/               DOO
+ :::`:::::::`;; ;:::::::::##                OO
+ ::::`:::::::`;::::::::;:::#                OO
+ `:::::`::::::::::::;'`:;::#                O
+  `:::::`::::::::;' /  / `:#
+   ::::::`:::::;'  /  /   `# '''
+
+you_win = '''
+                 .-"-.
+   *     (   +  /     \ . )
+      )   )     |#    |  (   *
+  .  (      .    \___/         .
+   + .-"-.    *   /^    +  (
+    /     \  )   (  .-"-.    )  +
+ .  |#    | (    * /     \  (  )
+     \___/   )  (  |#    |    (  '
+  *   /^         )  \___/
+     (    *  '  (     ^\   *  '
+ .    \     , , , , , ' \       +
+       )    | | | | |    ) .
+   *    . @%@%@%@%@%@%@ (    )
+   (      {   happy   }  \  (   *
+    ) *   { birthday! }   )    (
+   (    @%@%@%@%@%@%@%@%@       ) '
+ +      {               }  *   (
+        {               }    .    )
+  jgs   {               }        (
+*      @%@%@%@%@%@%@%@%@%@    + '''
