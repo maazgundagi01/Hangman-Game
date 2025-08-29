@@ -68,17 +68,23 @@ wrong_answers = set()
 # Main Game Loop
 while answer != set_of_characters and user_lives >= 0:
     # Display Module
-    print(f'{diagrams.decoration_line} Lives:{user_lives - 1} {diagrams.decoration_line}')
+    print(f'{diagrams.decoration_line} Lives:{user_lives} {diagrams.decoration_line}')
     print(f'{diagrams.diagram[user_lives]}\n')
     print(f'WORD YOU ARE GUESSING: {print_blanks(answer)}')
     print(f'Your WRONG Guesses: {",".join(wrong_answers)}')
 
     # Check user input
     character = input("Type a letter that you think exists in the word! --> ").lower()
-    while len(character) > 1:
-        character = input("Please only type one single letter at a time -->").lower()
-    while len(character) < 1:
-        character = input("Please type your answer -->").lower()
+
+    # Keep asking until we get exactly one alphabetic character
+    while len(character) != 1 or not character.isalpha():
+        if len(character) > 1:
+            character = input("Please only type one single letter at a time --> ").lower()
+        elif len(character) < 1:
+            character = input("Please type your answer --> ").lower()
+        elif not character.isalpha():
+            character = input("Please enter a valid letter --> ").lower()
+
     if character in set_of_characters:
         if character not in answer:
             answer.add(character)
