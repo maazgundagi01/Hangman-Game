@@ -1,3 +1,16 @@
-guess_words = [
-    "python", "jungle", "keyboard", "astronaut", "banana", "volcano", "whistle", "diamond", "universe", "giraffe", "pyramid", "zebra", "galaxy", "breeze", "cactus", "island", "lighthouse", "ocean", "pepper", "quartz", "robot", "shadow", "tornado", "umbrella", "village", "wizard", "xylophone", "yacht", "zeppelin", "acorn", "butterfly", "compass", "dragon", "emerald", "firework", "adventure", "balloon", "castle", "dagger", "eagle", "festival", "grapefruit", "harpoon", "inkwell", "juggler", "karma", "lighthouse", "meteor", "nocturnal", "oasis", "pirate", "quest", "raccoon", "saddle", "treasure", "utopia", "voyage", "windmill", "xenolith", "yearbook", "zodiac", "archer", "blizzard", "caterpillar", "dungeon", "envelope", "fireplace", "goblet", "hedgehog", "invader", "jukebox", "kitchen", "labrador", "mirror", "nettle", "oracle", "pencil", "quagmire", "reptile", "satchel", "toolbox", "upgrade", "valentine", "warrior", "xylocarp", "yawner", "zealot", "anthem", "ballet", "crystal", "dolphin", "embassy", "furnace", "granite", "hazelnut", "infinity", "javelin", "kernel", "labyrinth", "mantis", "napkin", "obsidian", "pegasus", "quiver", "rescue", "scooter", "trophy", "underdog", "vendor", "waffle", "xerox", "yield", "zenith", "apricot", "beacon", "caravan", "detour", "escalator", "fiddle", "gazelle", "hammock", "iguanodon", "juking", "knapsack", "lattice", "monsoon", "nugget", "outpost", "puzzle", "quokka", "riddle", "saber", "tundra", "uplift", "vulture", "wanderer", "zombie"
+fruits = [
+    "apple", "banana", "orange", "grape", "mango", "pineapple", "peach", "pear", "plum", "cherry",
+    "watermelon", "strawberry", "blueberry", "raspberry", "lemon", "lime", "kiwi", "papaya", "coconut", "pomegranate"
+]
+
+objects = [
+    "chair", "table", "pencil", "notebook", "backpack", "phone", "wallet", "key", "lamp", "mirror",
+    "toothbrush", "towel", "cup", "bottle", "scissors", "remote", "blanket", "clock", "comb", "spoon",
+    "fork", "plate", "bag", "glasses", "soap", "shampoo", "charger", "fan", "mouse", "keyboard"
+]
+
+animals = [
+    "dog", "cat", "cow", "horse", "sheep", "goat", "pig", "chicken", "duck", "rabbit",
+    "elephant", "lion", "tiger", "bear", "zebra", "giraffe", "monkey", "panda", "kangaroo", "fox",
+    "wolf", "deer", "camel", "donkey", "leopard", "mouse", "rat", "snake", "frog", "turtle"
 ]
