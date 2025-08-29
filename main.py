@@ -66,7 +66,7 @@ answer = set()
 wrong_answers = set()
 
 # Main Game Loop
-while answer != set_of_characters:
+while answer != set_of_characters and user_lives >= 0:
     # Display Module
     print(f'{diagrams.decoration_line} Lives:{user_lives - 1} {diagrams.decoration_line}')
     print(f'{diagrams.diagram[user_lives]}\n')
