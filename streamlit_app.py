@@ -150,66 +150,88 @@ def reset_game():
 def main():
     st.set_page_config(page_title="Hangman Game", page_icon="🎯", layout="centered")
 
-    # Custom CSS for better styling
+    # Custom CSS for better styling with proper contrast
     st.markdown("""
     <style>
     .hangman-ascii {
         font-family: 'Courier New', monospace;
         font-size: 14px;
         white-space: pre;
-        background-color: #f0f0f0;
+        background-color: #1e1e1e;
+        color: #00ff00;
         padding: 20px;
         border-radius: 10px;
         margin: 20px 0;
+        border: 2px solid #333;
     }
     .word-display {
         font-family: 'Courier New', monospace;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: bold;
         text-align: center;
         padding: 20px;
-        background-color: #e6f3ff;
+        background-color: #2d3748;
+        color: #ffffff;
         border-radius: 10px;
         margin: 20px 0;
+        border: 2px solid #4a5568;
     }
     .game-info {
-        background-color: #f8f9fa;
+        background-color: #2d3748;
+        color: #ffffff;
         padding: 15px;
         border-radius: 10px;
         margin: 10px 0;
+        border: 1px solid #4a5568;
+    }
+    .wrong-guesses {
+        background-color: #742a2a;
+        color: #fed7d7;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border: 1px solid #c53030;
     }
     </style>
     """, unsafe_allow_html=True)
 
     initialize_game()
 
-    st.title("🎯 Hangman Game")
+    st.title("🎯 HANGMAN GAME 🎪")
     st.markdown("---")
 
     # Game introduction
     if not st.session_state.game_started:
         st.markdown("""
-        ## Welcome to Hangman! 
+        ## 🎮 Welcome to Hangman! 🎭
 
-        **How to play:**
-        - **Win:** Guess all letters with 8 or fewer mistakes!
-        - **Lose:** Make more than 8 wrong guesses and you're out!
+        **📜 How to play:**
+        - **🏆 Win:** Guess all letters with 8 or fewer mistakes!
+        - **💀 Lose:** Make more than 8 wrong guesses and you're out!
 
-        Choose a category and start guessing!
+        🎲 Choose a category and start guessing! 🤔
         """)
 
         # Category selection
         category = st.selectbox(
-            "What kind of word would you like to guess?",
-            ["Select a category...", "Fruits", "Objects", "Animals"]
+            "🤷‍♂️ What kind of word would you like to guess?",
+            ["❓ Select a category...", "🍎 Fruits", "📦 Objects", "🐾 Animals"]
         )
 
-        if category != "Select a category...":
-            if st.button("🎮 Start Game", type="primary"):
-                st.session_state.random_word = pick_random_word(category)
+        if category != "❓ Select a category...":
+            if st.button("🎮 START GAME 🚀", type="primary"):
+                category_name = category.split(' ', 1)[1]  # Remove emoji
+                st.session_state.random_word = pick_random_word(category_name)
                 st.session_state.set_of_characters = set(st.session_state.random_word)
                 st.session_state.game_started = True
-                st.success(f"You selected to guess a {category.lower()[:-1]}! Good luck!")
+
+                # Category-specific success messages
+                if "Fruits" in category:
+                    st.success(f"🍊 You selected to guess a fruit! Get ready for something juicy! 🥭")
+                elif "Objects" in category:
+                    st.success(f"🔧 You selected to guess an object! Think about everyday items! 🏠")
+                elif "Animals" in category:
+                    st.success(f"🦁 You selected to guess an animal! Time for a wild adventure! 🐯")
                 st.rerun()
 
     # Main game
@@ -217,40 +239,44 @@ def main():
         # Game status
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown(f"<div class='game-info'><strong>Lives Remaining:</strong> {st.session_state.user_lives}</div>",
-                        unsafe_allow_html=True)
+            st.markdown(
+                f"<div class='game-info'>💖 <strong>Lives Remaining:</strong> {st.session_state.user_lives}</div>",
+                unsafe_allow_html=True)
         with col2:
             st.markdown(
-                f"<div class='game-info'><strong>Word Length:</strong> {len(st.session_state.random_word)} letters</div>",
+                f"<div class='game-info'>📏 <strong>Word Length:</strong> {len(st.session_state.random_word)} letters</div>",
                 unsafe_allow_html=True)
         with col3:
             st.markdown(
-                f"<div class='game-info'><strong>Letters Guessed:</strong> {len(st.session_state.answer) + len(st.session_state.wrong_answers)}</div>",
+                f"<div class='game-info'>🔤 <strong>Letters Guessed:</strong> {len(st.session_state.answer) + len(st.session_state.wrong_answers)}</div>",
                 unsafe_allow_html=True)
 
         # Hangman diagram
-        st.markdown(f"<div class='hangman-ascii'>{diagrams[st.session_state.user_lives]}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='hangman-ascii'>🎭 THE GALLOWS 🎭\n{diagrams[st.session_state.user_lives]}</div>",
+                    unsafe_allow_html=True)
 
         # Word display
         word_display = print_blanks(st.session_state.answer, st.session_state.random_word)
-        st.markdown(f"<div class='word-display'>{word_display}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='word-display'>🔤 {word_display} 🔤</div>", unsafe_allow_html=True)
 
         # Wrong guesses
         if st.session_state.wrong_answers:
             wrong_list = sorted(list(st.session_state.wrong_answers))
-            st.markdown(f"**Wrong Guesses:** {', '.join(wrong_list)}")
+            st.markdown(
+                f"<div class='wrong-guesses'>❌ <strong>Wrong Guesses:</strong> {', '.join(wrong_list.upper())} 💔</div>",
+                unsafe_allow_html=True)
 
         # Input for letter guess
         col1, col2 = st.columns([3, 1])
         with col1:
             letter_guess = st.text_input(
-                "Type a letter that you think exists in the word:",
+                "🤔 Type a letter that you think exists in the word:",
                 max_chars=1,
                 key="letter_input"
             ).lower()
 
         with col2:
-            guess_button = st.button("🎯 Guess!", type="primary")
+            guess_button = st.button("🎯 GUESS! 💥", type="primary")
 
         # Process guess
         if guess_button and letter_guess:
@@ -258,16 +284,16 @@ def main():
                 if letter_guess in st.session_state.set_of_characters:
                     if letter_guess not in st.session_state.answer:
                         st.session_state.answer.add(letter_guess)
-                        st.success("🎉 Yes! The letter is in the word!")
+                        st.success("🎉 YES! The letter is in the word! 🌟")
                     else:
-                        st.warning("🤔 You already guessed that letter! No lives deducted.")
+                        st.warning("🤔 You already guessed that letter! No lives deducted. 😅")
                 else:
                     if letter_guess not in st.session_state.wrong_answers:
                         st.session_state.wrong_answers.add(letter_guess)
                         st.session_state.user_lives -= 1
-                        st.error("❌ Oops! The letter is not in the word!")
+                        st.error("❌ Oops! The letter is not in the word! 💀")
                     else:
-                        st.warning("🤔 You already tried that letter! No lives deducted.")
+                        st.warning("🤔 You already tried that letter! No lives deducted. 😓")
 
                 # Check win/lose conditions
                 if st.session_state.answer == st.session_state.set_of_characters:
@@ -280,23 +306,23 @@ def main():
                 # Clear input and rerun
                 st.rerun()
             else:
-                st.error("⚠️ Please enter exactly one letter!")
+                st.error("⚠️ Please enter exactly one letter! 📝")
 
     # Game over screen
     elif st.session_state.game_over:
         if st.session_state.won:
             st.balloons()
-            st.success("🎉🎉🎉 CONGRATULATIONS! YOU WIN! 🎉🎉🎉")
-            st.markdown(f"### You correctly guessed the word: **{st.session_state.random_word.upper()}**")
-            st.markdown("🌟 Great job! You saved the hangman!")
+            st.success("🎉🎊🏆 CONGRATULATIONS! YOU WIN! 🏆🎊🎉")
+            st.markdown(f"### 🌟 You correctly guessed the word: **{st.session_state.random_word.upper()}** 🌟")
+            st.markdown("🦸‍♂️ Great job! You saved the hangman! The town celebrates! 🎪🎭")
         else:
-            st.markdown(f"<div class='hangman-ascii'>{diagrams[0]}</div>", unsafe_allow_html=True)
-            st.error("💀 GAME OVER! You lost this time...")
-            st.markdown(f"### The word was: **{st.session_state.random_word.upper()}**")
-            st.markdown("😔 Better luck next time!")
+            st.markdown(f"<div class='hangman-ascii'>💀 FINAL MOMENT 💀\n{diagrams[0]}</div>", unsafe_allow_html=True)
+            st.error("💀⚰️ GAME OVER! You lost this time... ⚰️💀")
+            st.markdown(f"### 🔍 The word was: **{st.session_state.random_word.upper()}** 🔍")
+            st.markdown("😔💔 Better luck next time! Don't give up! 💪✨")
 
         # Play again button
-        if st.button("🔄 Play Again", type="primary"):
+        if st.button("🔄 PLAY AGAIN 🎮", type="primary"):
             reset_game()
             st.rerun()
 
